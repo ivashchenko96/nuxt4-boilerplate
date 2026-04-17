@@ -10,6 +10,8 @@
         <slot />
       </main>
     </div>
+    <!-- AI panel — always mounted, visibility controlled by aiStore.panelOpen -->
+    <AiPanel />
   </div>
 </template>
 

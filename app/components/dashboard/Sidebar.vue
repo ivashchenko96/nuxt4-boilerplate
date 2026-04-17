@@ -119,6 +119,7 @@ const { t } = useI18n()
 
 const navItems = computed(() => [
   { to: '/dashboard', icon: 'i-heroicons-home', label: t('nav.dashboard') },
+  { to: '/dashboard/ai', icon: 'i-heroicons-sparkles', label: t('nav.ai') },
   { to: '/dashboard/users', icon: 'i-heroicons-users', label: t('nav.users') },
   { to: '/dashboard/reports', icon: 'i-heroicons-chart-bar', label: t('nav.reports') },
   { to: '/dashboard/settings', icon: 'i-heroicons-cog-6-tooth', label: t('nav.settings') },

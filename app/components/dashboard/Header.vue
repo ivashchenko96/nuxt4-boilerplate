@@ -26,6 +26,23 @@
     <div class="flex items-center gap-2">
       <SharedColorModeToggle />
       <SharedLanguageSwitcher />
+      <!-- AI assistant panel toggle -->
+      <UButton
+        variant="ghost"
+        size="sm"
+        icon="i-heroicons-sparkles"
+        :class="aiStore.panelOpen ? 'text-brand-500 bg-brand-50 dark:bg-brand-900/20' : ''"
+        :aria-label="$t('ai.togglePanel')"
+        @click="aiStore.panelOpen = !aiStore.panelOpen"
+      />
+      <!-- Command palette trigger -->
+      <UButton
+        variant="ghost"
+        size="sm"
+        icon="i-heroicons-magnifying-glass"
+        :aria-label="$t('ai.commandPalette')"
+        @click="aiStore.commandPaletteOpen = true"
+      />
       <UButton
         variant="ghost"
         size="sm"
@@ -43,6 +60,7 @@
 
 <script setup lang="ts">
 const uiStore = useUiStore()
+const aiStore = useAiStore()
 const { user } = useAuth()
 const route = useRoute()
 const { t } = useI18n()

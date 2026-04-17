@@ -1,3 +1,6 @@
+// Re-export AI types
+export * from './ai'
+
 // Auth types
 export interface User {
   id: string

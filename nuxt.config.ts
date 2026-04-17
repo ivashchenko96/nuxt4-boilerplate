@@ -54,6 +54,11 @@ export default defineNuxtConfig({
       defaultLocale: 'en',
       enablePwa: process.env.NUXT_PUBLIC_ENABLE_PWA !== 'false',
       enableSeo: process.env.NUXT_PUBLIC_ENABLE_SEO !== 'false',
+      // AI configuration — injected at runtime, never baked into the image
+      aiBaseUrl: process.env.NUXT_PUBLIC_AI_BASE_URL || '',
+      aiDefaultModel: process.env.NUXT_PUBLIC_AI_DEFAULT_MODEL || 'gpt-4o',
+      aiDefaultProvider: process.env.NUXT_PUBLIC_AI_DEFAULT_PROVIDER || 'openai',
+      mcpServerUrl: process.env.NUXT_PUBLIC_MCP_SERVER_URL || '',
     },
   },
 
