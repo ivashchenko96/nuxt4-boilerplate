@@ -31,10 +31,11 @@ export function truncate(text: string, length: number): string {
  * Resolve tenant from hostname
  */
 export function resolveTenantFromHostname(hostname: string): string {
-  // Strip port number if present
-  const host = hostname.split(':')[0] ?? ''
+  // Strip port number if present; split always returns at least one element
+  const host = hostname.split(':')[0] as string
   const parts = host.split('.')
   if (parts.length < 2 || host === 'localhost') return 'default'
+  // parts[0] is guaranteed to exist when parts.length >= 3; empty string means no subdomain
   if (parts.length >= 3) return parts[0] || 'default'
   return 'default'
 }

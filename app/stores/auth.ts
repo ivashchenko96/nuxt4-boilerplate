@@ -51,9 +51,17 @@ export const useAuthStore = defineStore('auth', () => {
     const accessToken = sessionStorage.getItem(TOKEN_KEY)
     const refreshToken = sessionStorage.getItem(REFRESH_KEY)
     if (accessToken && refreshToken) {
-      // Parse expiration from JWT payload rather than defaulting to 0
+      // Parse expiration from JWT payload
       const payload = parseJwtPayload(accessToken)
-      const expiresAt = typeof payload?.exp === 'number' ? payload.exp * 1000 : Date.now()
+      let expiresAt: number
+      if (typeof payload?.exp === 'number') {
+        expiresAt = payload.exp * 1000
+      }
+      else {
+        // Missing or invalid exp claim: treat token as expired so refresh is triggered
+        console.warn('[auth] JWT missing exp claim; treating token as expired for safety')
+        expiresAt = Date.now() - 1
+      }
       tokens.value = {
         accessToken,
         refreshToken,

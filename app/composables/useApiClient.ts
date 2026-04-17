@@ -10,6 +10,8 @@ export function useApiClient() {
   const config = useRuntimeConfig()
   const authStore = useAuthStore()
   const tenantStore = useTenantStore()
+  // localePath extracted at top level to be safe on both server and client
+  const localePath = useLocalePath()
 
   const baseUrl = config.public.apiBaseUrl as string
 
@@ -56,7 +58,6 @@ export function useApiClient() {
       }
       catch {
         authStore.clearAuth()
-        const localePath = useLocalePath()
         navigateTo(localePath('/auth/login'))
       }
     }
