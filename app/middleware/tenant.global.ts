@@ -2,11 +2,11 @@ import { resolveTenantFromHostname } from '~~/shared/utils'
 
 export default defineNuxtRouteMiddleware(async () => {
   const tenantStore = useTenantStore()
-
-  if (tenantStore.current) return
-
   const requestURL = useRequestURL()
   const slug = resolveTenantFromHostname(requestURL.hostname)
+
+  // Skip re-resolution if tenant is already set for this slug
+  if (tenantStore.current?.slug === slug) return
 
   tenantStore.setTenant({
     id: slug,

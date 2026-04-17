@@ -56,7 +56,8 @@ export function useApiClient() {
       }
       catch {
         authStore.clearAuth()
-        navigateTo('/auth/login')
+        const localePath = useLocalePath()
+        navigateTo(localePath('/auth/login'))
       }
     }
 

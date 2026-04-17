@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { User, AuthTokens } from '~~/shared/types'
+import { parseJwtPayload } from '~~/shared/utils'
 
 const TOKEN_KEY = 'auth_access_token'
 const REFRESH_KEY = 'auth_refresh_token'
@@ -50,10 +51,13 @@ export const useAuthStore = defineStore('auth', () => {
     const accessToken = sessionStorage.getItem(TOKEN_KEY)
     const refreshToken = sessionStorage.getItem(REFRESH_KEY)
     if (accessToken && refreshToken) {
+      // Parse expiration from JWT payload rather than defaulting to 0
+      const payload = parseJwtPayload(accessToken)
+      const expiresAt = typeof payload?.exp === 'number' ? payload.exp * 1000 : Date.now()
       tokens.value = {
         accessToken,
         refreshToken,
-        expiresAt: 0,
+        expiresAt,
       }
     }
   }

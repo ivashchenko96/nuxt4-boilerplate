@@ -31,8 +31,9 @@ export function truncate(text: string, length: number): string {
  * Resolve tenant from hostname
  */
 export function resolveTenantFromHostname(hostname: string): string {
-  const host = hostname.split(':')[0]
-  const parts = host!.split('.')
+  // Strip port number if present
+  const host = hostname.split(':')[0] ?? ''
+  const parts = host.split('.')
   if (parts.length < 2 || host === 'localhost') return 'default'
   if (parts.length >= 3) return parts[0] || 'default'
   return 'default'
@@ -53,7 +54,9 @@ export function parseJwtPayload(token: string): Record<string, unknown> | null {
   try {
     const parts = token.split('.')
     if (parts.length !== 3) return null
-    const payload = atob(parts[1]!.replace(/-/g, '+').replace(/_/g, '/'))
+    const base64 = parts[1]
+    if (!base64) return null
+    const payload = atob(base64.replace(/-/g, '+').replace(/_/g, '/'))
     return JSON.parse(payload) as Record<string, unknown>
   }
   catch {
