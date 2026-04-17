@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "reports": "Reports",
+    "settings": "Settings"
+  },
+  "common": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "toggleSidebar": "Toggle sidebar",
+    "notifications": "Notifications",
+    "language": "Language",
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "loading": "Loading..."
+  },
+  "auth": {
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to your account to continue",
+    "email": "Email address",
+    "emailPlaceholder": "you{'@'}example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Sign In",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "validation": {
+      "emailInvalid": "Please enter a valid email address",
+      "passwordMin": "Password must be at least 8 characters"
+    }
+  },
+  "home": {
+    "badge": "Enterprise Ready",
+    "meta": {
+      "title": "Enterprise Platform",
+      "description": "A production-ready enterprise boilerplate built with Nuxt 4"
+    },
+    "hero": {
+      "title": "Build Enterprise Apps",
+      "highlight": " Faster",
+      "description": "A production-ready Nuxt 4 boilerplate with authentication, multi-tenancy, i18n, and everything you need.",
+      "cta": "Get Started",
+      "github": "View on GitHub"
+    },
+    "features": {
+      "title": "Everything You Need",
+      "description": "Built with best practices for enterprise applications",
+      "security": {
+        "title": "Security First",
+        "description": "JWT authentication, RBAC, security headers, and CSRF protection built in."
+      },
+      "i18n": {
+        "title": "Internationalization",
+        "description": "Full i18n support with lazy-loaded translations and language switcher."
+      },
+      "multiTenant": {
+        "title": "Multi-Tenant",
+        "description": "Subdomain-based multi-tenancy with per-tenant configuration and branding."
+      },
+      "dashboard": {
+        "title": "Admin Dashboard",
+        "description": "Full-featured dashboard with sidebar, data tables, charts, and statistics."
+      },
+      "pwa": {
+        "title": "PWA Ready",
+        "description": "Progressive Web App with offline support, install prompt, and service worker."
+      },
+      "modular": {
+        "title": "Modular Architecture",
+        "description": "Clean, modular codebase with composables, stores, and reusable components."
+      }
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {name}!",
+    "subtitle": "Here's what's happening with your platform today.",
+    "activityChart": "Activity Overview",
+    "chartPlaceholder": "Chart integration coming soon",
+    "recentActivity": "Recent Activity",
+    "quickActions": "Quick Actions",
+    "export": "Export",
+    "stats": {
+      "users": "Total Users",
+      "revenue": "Revenue",
+      "orders": "Orders",
+      "uptime": "Uptime"
+    },
+    "activity": {
+      "newUser": "New user registered",
+      "reportGenerated": "Monthly report generated",
+      "settingsUpdated": "System settings updated",
+      "userLoggedIn": "User logged in"
+    }
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Manage your platform users",
+    "addUser": "Add User",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "status": "Status",
+    "createdAt": "Created",
+    "tableAriaLabel": "Users table"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account and preferences",
+    "profile": "Profile",
+    "name": "Full Name",
+    "email": "Email",
+    "saveProfile": "Save Profile",
+    "preferences": "Preferences",
+    "darkMode": "Dark Mode",
+    "darkModeDesc": "Switch between light and dark theme",
+    "language": "Language",
+    "languageDesc": "Choose your preferred language",
+    "dangerZone": "Danger Zone",
+    "signOut": "Sign Out",
+    "signOutDesc": "Sign out from all devices"
+  },
+  "footer": {
+    "tagline": "Enterprise-grade Nuxt 4 boilerplate",
+    "product": "Product",
+    "legal": "Legal",
+    "social": "Social",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "githubLink": "GitHub",
+    "twitterLink": "Twitter / X",
+    "copyright": "© {year} {name}. All rights reserved."
+  },
+  "table": {
+    "search": "Search...",
+    "noData": "No data available",
+    "showing": "Showing {from}-{to} of {total}",
+    "prevPage": "Previous page",
+    "nextPage": "Next page"
+  }
+}

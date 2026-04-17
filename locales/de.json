@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "dashboard": "Dashboard",
+    "users": "Benutzer",
+    "reports": "Berichte",
+    "settings": "Einstellungen"
+  },
+  "common": {
+    "skipToContent": "Zum Hauptinhalt springen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "toggleSidebar": "Seitenleiste umschalten",
+    "notifications": "Benachrichtigungen",
+    "language": "Sprache",
+    "lightMode": "Zum hellen Modus wechseln",
+    "darkMode": "Zum dunklen Modus wechseln",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "loading": "Laden..."
+  },
+  "auth": {
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "loginTitle": "Willkommen zurück",
+    "loginSubtitle": "Melden Sie sich bei Ihrem Konto an",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "sie{'@'}beispiel.de",
+    "password": "Passwort",
+    "passwordPlaceholder": "Passwort eingeben",
+    "rememberMe": "Angemeldet bleiben",
+    "forgotPassword": "Passwort vergessen?",
+    "loginButton": "Anmelden",
+    "showPassword": "Passwort anzeigen",
+    "hidePassword": "Passwort verbergen",
+    "validation": {
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "passwordMin": "Das Passwort muss mindestens 8 Zeichen lang sein"
+    }
+  },
+  "home": {
+    "badge": "Unternehmenstauglich",
+    "meta": {
+      "title": "Enterprise-Plattform",
+      "description": "Ein produktionsfertiges Enterprise-Boilerplate mit Nuxt 4"
+    },
+    "hero": {
+      "title": "Enterprise-Apps entwickeln",
+      "highlight": " Schneller",
+      "description": "Ein produktionsfertiges Nuxt 4 Boilerplate mit Authentifizierung, Multi-Tenancy, i18n und allem was Sie benötigen.",
+      "cta": "Loslegen",
+      "github": "Auf GitHub ansehen"
+    },
+    "features": {
+      "title": "Alles was Sie brauchen",
+      "description": "Entwickelt nach Best Practices für Unternehmensanwendungen",
+      "security": {
+        "title": "Sicherheit zuerst",
+        "description": "JWT-Authentifizierung, RBAC, Sicherheitsheader und CSRF-Schutz integriert."
+      },
+      "i18n": {
+        "title": "Internationalisierung",
+        "description": "Vollständige i18n-Unterstützung mit lazy-geladenen Übersetzungen."
+      },
+      "multiTenant": {
+        "title": "Multi-Tenant",
+        "description": "Subdomain-basierte Multi-Tenancy mit mandantenspezifischer Konfiguration."
+      },
+      "dashboard": {
+        "title": "Admin-Dashboard",
+        "description": "Vollständiges Dashboard mit Seitenleiste, Datentabellen und Statistiken."
+      },
+      "pwa": {
+        "title": "PWA-Bereit",
+        "description": "Progressive Web App mit Offline-Unterstützung und Service Worker."
+      },
+      "modular": {
+        "title": "Modulare Architektur",
+        "description": "Sauberer, modularer Code mit Composables, Stores und Komponenten."
+      }
+    }
+  },
+  "dashboard": {
+    "welcome": "Willkommen zurück, {name}!",
+    "subtitle": "Das ist, was heute auf Ihrer Plattform passiert.",
+    "activityChart": "Aktivitätsübersicht",
+    "chartPlaceholder": "Diagramm-Integration demnächst verfügbar",
+    "recentActivity": "Letzte Aktivitäten",
+    "quickActions": "Schnellaktionen",
+    "export": "Exportieren",
+    "stats": {
+      "users": "Gesamtbenutzer",
+      "revenue": "Umsatz",
+      "orders": "Bestellungen",
+      "uptime": "Verfügbarkeit"
+    },
+    "activity": {
+      "newUser": "Neuer Benutzer registriert",
+      "reportGenerated": "Monatlicher Bericht erstellt",
+      "settingsUpdated": "Systemeinstellungen aktualisiert",
+      "userLoggedIn": "Benutzer angemeldet"
+    }
+  },
+  "users": {
+    "title": "Benutzer",
+    "subtitle": "Verwalten Sie Ihre Plattformbenutzer",
+    "addUser": "Benutzer hinzufügen",
+    "name": "Name",
+    "email": "E-Mail",
+    "role": "Rolle",
+    "status": "Status",
+    "createdAt": "Erstellt",
+    "tableAriaLabel": "Benutzertabelle"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "subtitle": "Verwalten Sie Ihr Konto und Ihre Einstellungen",
+    "profile": "Profil",
+    "name": "Vollständiger Name",
+    "email": "E-Mail",
+    "saveProfile": "Profil speichern",
+    "preferences": "Einstellungen",
+    "darkMode": "Dunkler Modus",
+    "darkModeDesc": "Zwischen hellem und dunklem Theme wechseln",
+    "language": "Sprache",
+    "languageDesc": "Bevorzugte Sprache wählen",
+    "dangerZone": "Gefahrenzone",
+    "signOut": "Abmelden",
+    "signOutDesc": "Von allen Geräten abmelden"
+  },
+  "footer": {
+    "tagline": "Enterprise-Grade Nuxt 4 Boilerplate",
+    "product": "Produkt",
+    "legal": "Rechtliches",
+    "social": "Social Media",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "githubLink": "GitHub",
+    "twitterLink": "Twitter / X",
+    "copyright": "© {year} {name}. Alle Rechte vorbehalten."
+  },
+  "table": {
+    "search": "Suchen...",
+    "noData": "Keine Daten verfügbar",
+    "showing": "Zeige {from}-{to} von {total}",
+    "prevPage": "Vorherige Seite",
+    "nextPage": "Nächste Seite"
+  }
+}
