@@ -21,7 +21,7 @@ const switchLocalePath = useSwitchLocalePath()
 const router = useRouter()
 
 async function onLocaleChange(event: Event) {
-  const val = (event.target as HTMLSelectElement).value
+  const val = (event.target as HTMLSelectElement).value as 'en' | 'de'
   await setLocale(val)
   await router.push(switchLocalePath(val))
 }

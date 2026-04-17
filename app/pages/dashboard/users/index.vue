@@ -75,6 +75,7 @@ interface UserRow {
   status: 'active' | 'inactive'
   createdAt: string
   actions: null
+  [key: string]: unknown
 }
 
 const isLoading = ref(false)
