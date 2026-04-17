@@ -4,14 +4,28 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
     "dev": "nuxt dev",
+    "build": "nuxt build",
+    "build:static": "nuxt generate",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs",
     "postinstall": "nuxt prepare",
+    "prepare": "husky",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "ci:check": "npm run lint && npm run typecheck",
+    "commit": "git-cz",
+    "release": "npm version",
+    "docker:build": "docker build -t nuxt4-boilerplate .",
+    "docker:run": "docker run -p 3000:3000 --env-file .env nuxt4-boilerplate"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue,mjs,cjs}": [
+      "eslint --fix",
+      "eslint"
+    ]
   },
   "dependencies": {
     "@nuxt/fonts": "^0.11.4",
@@ -30,8 +44,14 @@
     "zod": "^3.24.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint": "^1.3.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "typescript": "^5.8.3",
     "vue-tsc": "^2.2.10"
   }

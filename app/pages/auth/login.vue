@@ -1,8 +1,12 @@
 <template>
   <div>
     <div class="text-center mb-8">
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $t('auth.loginTitle') }}</h1>
-      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">{{ $t('auth.loginSubtitle') }}</p>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+        {{ $t('auth.loginTitle') }}
+      </h1>
+      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">
+        {{ $t('auth.loginSubtitle') }}
+      </p>
     </div>
 
     <UForm
@@ -11,7 +15,10 @@
       class="space-y-4"
       @submit="onSubmit"
     >
-      <UFormField :label="$t('auth.email')" name="email">
+      <UFormField
+        :label="$t('auth.email')"
+        name="email"
+      >
         <UInput
           v-model="form.email"
           type="email"
@@ -22,7 +29,10 @@
         />
       </UFormField>
 
-      <UFormField :label="$t('auth.password')" name="password">
+      <UFormField
+        :label="$t('auth.password')"
+        name="password"
+      >
         <UInput
           v-model="form.password"
           :type="showPassword ? 'text' : 'password'"
@@ -45,7 +55,10 @@
       </UFormField>
 
       <div class="flex items-center justify-between">
-        <UCheckbox v-model="form.remember" :label="$t('auth.rememberMe')" />
+        <UCheckbox
+          v-model="form.remember"
+          :label="$t('auth.rememberMe')"
+        />
         <NuxtLink
           :to="localePath('/auth/forgot-password')"
           class="text-sm text-brand-600 hover:text-brand-500 dark:text-brand-400"

@@ -1,8 +1,12 @@
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $t('dashboard.welcome', { name: user?.name }) }}</h1>
-      <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">{{ $t('dashboard.subtitle') }}</p>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+        {{ $t('dashboard.welcome', { name: user?.name }) }}
+      </h1>
+      <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">
+        {{ $t('dashboard.subtitle') }}
+      </p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -19,17 +23,26 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">{{ $t('dashboard.activityChart') }}</h2>
+        <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">
+          {{ $t('dashboard.activityChart') }}
+        </h2>
         <div class="h-48 flex items-center justify-center text-gray-400 dark:text-gray-600">
           <div class="text-center">
-            <UIcon name="i-heroicons-chart-bar" class="w-12 h-12 mx-auto mb-2" />
-            <p class="text-sm">{{ $t('dashboard.chartPlaceholder') }}</p>
+            <UIcon
+              name="i-heroicons-chart-bar"
+              class="w-12 h-12 mx-auto mb-2"
+            />
+            <p class="text-sm">
+              {{ $t('dashboard.chartPlaceholder') }}
+            </p>
           </div>
         </div>
       </div>
 
       <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">{{ $t('dashboard.recentActivity') }}</h2>
+        <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">
+          {{ $t('dashboard.recentActivity') }}
+        </h2>
         <ul class="space-y-3">
           <li
             v-for="activity in recentActivity"
@@ -37,11 +50,18 @@
             class="flex items-start gap-3"
           >
             <div class="w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center flex-shrink-0">
-              <UIcon :name="activity.icon" class="w-4 h-4 text-brand-600 dark:text-brand-400" />
+              <UIcon
+                :name="activity.icon"
+                class="w-4 h-4 text-brand-600 dark:text-brand-400"
+              />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-sm text-gray-700 dark:text-gray-300">{{ activity.message }}</p>
-              <p class="text-xs text-gray-400 mt-0.5">{{ activity.time }}</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                {{ activity.message }}
+              </p>
+              <p class="text-xs text-gray-400 mt-0.5">
+                {{ activity.time }}
+              </p>
             </div>
           </li>
         </ul>
@@ -49,7 +69,9 @@
     </div>
 
     <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-      <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">{{ $t('dashboard.quickActions') }}</h2>
+      <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">
+        {{ $t('dashboard.quickActions') }}
+      </h2>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <UButton
           v-for="action in quickActions"
@@ -59,7 +81,10 @@
           color="primary"
           class="flex-col h-20 gap-2"
         >
-          <UIcon :name="action.icon" class="w-6 h-6" />
+          <UIcon
+            :name="action.icon"
+            class="w-6 h-6"
+          />
           <span class="text-xs">{{ action.label }}</span>
         </UButton>
       </div>

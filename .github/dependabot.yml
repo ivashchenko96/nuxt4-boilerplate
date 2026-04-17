@@ -1,0 +1,69 @@
+# Dependabot configuration
+# Keeps npm and GitHub Actions dependencies up to date automatically.
+# Opens PRs weekly; group related updates to reduce noise.
+
+version: 2
+updates:
+  # ── npm / Node dependencies ──────────────────────────────────────────────────
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "automated"
+    groups:
+      nuxt-ecosystem:
+        patterns:
+          - "nuxt"
+          - "@nuxt/*"
+          - "@nuxtjs/*"
+          - "nitropack"
+          - "h3"
+        update-types:
+          - "minor"
+          - "patch"
+      vue-ecosystem:
+        patterns:
+          - "vue"
+          - "vue-*"
+          - "@vue/*"
+          - "pinia"
+          - "@pinia/*"
+        update-types:
+          - "minor"
+          - "patch"
+      dev-tooling:
+        patterns:
+          - "typescript"
+          - "eslint"
+          - "@typescript-eslint/*"
+          - "husky"
+          - "lint-staged"
+          - "@commitlint/*"
+          - "commitizen"
+          - "cz-*"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # Pin major versions manually to avoid accidental breaking changes
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # ── GitHub Actions ───────────────────────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "ci"
+      - "automated"

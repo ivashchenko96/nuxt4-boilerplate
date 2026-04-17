@@ -1,0 +1,44 @@
+# Dependencies & build output – never needed in the image
+node_modules
+.nuxt
+.output
+.nitro
+.cache
+dist
+
+# Local env files – secrets must not be copied into images
+.env
+.env.*
+!.env.example
+
+# Dev tooling
+.git
+.gitignore
+.husky
+.vscode
+.idea
+*.log
+npm-debug.log*
+
+# Documentation / meta
+README.md
+CONTRIBUTING.md
+CHANGELOG.md
+*.md
+docs/
+
+# CI config
+.github/
+.gitlab-ci.yml
+Jenkinsfile
+
+# Test output
+coverage/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Docker Compose files (not needed inside the image)
+docker-compose*.yml
+Dockerfile*

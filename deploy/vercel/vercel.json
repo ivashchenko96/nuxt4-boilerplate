@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "framework": "nuxt",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".output/public",
+  "installCommand": "npm ci",
+  "regions": ["iad1"],
+  "env": {
+    "NUXT_PUBLIC_APP_NAME": "@app-name",
+    "NUXT_PUBLIC_API_BASE_URL": "@api-base-url",
+    "NUXT_PUBLIC_AUTH_BASE_URL": "@auth-base-url"
+  }
+}

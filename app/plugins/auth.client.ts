@@ -52,7 +52,7 @@ export default defineNuxtPlugin(async () => {
       const authStore = useAuthStore()
       const token = authStore.tokens?.accessToken
       const response = await fetch(`${authBaseUrl}/auth/profile`, {
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       if (!response.ok) throw new Error('Failed to fetch profile')
       return response.json() as Promise<User>

@@ -16,7 +16,9 @@
     <section class="py-16 bg-white dark:bg-gray-950">
       <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8">
-          <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6">{{ $t('contact.formTitle') }}</h2>
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6">
+            {{ $t('contact.formTitle') }}
+          </h2>
 
           <UForm
             :state="form"
@@ -24,14 +26,20 @@
             @submit="onSubmit"
           >
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <UFormField :label="$t('contact.firstName')" name="firstName">
+              <UFormField
+                :label="$t('contact.firstName')"
+                name="firstName"
+              >
                 <UInput
                   v-model="form.firstName"
                   :placeholder="$t('contact.firstNamePlaceholder')"
                   class="w-full"
                 />
               </UFormField>
-              <UFormField :label="$t('contact.lastName')" name="lastName">
+              <UFormField
+                :label="$t('contact.lastName')"
+                name="lastName"
+              >
                 <UInput
                   v-model="form.lastName"
                   :placeholder="$t('contact.lastNamePlaceholder')"
@@ -40,7 +48,10 @@
               </UFormField>
             </div>
 
-            <UFormField :label="$t('contact.email')" name="email">
+            <UFormField
+              :label="$t('contact.email')"
+              name="email"
+            >
               <UInput
                 v-model="form.email"
                 type="email"
@@ -50,7 +61,10 @@
               />
             </UFormField>
 
-            <UFormField :label="$t('contact.subject')" name="subject">
+            <UFormField
+              :label="$t('contact.subject')"
+              name="subject"
+            >
               <UInput
                 v-model="form.subject"
                 :placeholder="$t('contact.subjectPlaceholder')"
@@ -58,7 +72,10 @@
               />
             </UFormField>
 
-            <UFormField :label="$t('contact.message')" name="message">
+            <UFormField
+              :label="$t('contact.message')"
+              name="message"
+            >
               <UTextarea
                 v-model="form.message"
                 :placeholder="$t('contact.messagePlaceholder')"

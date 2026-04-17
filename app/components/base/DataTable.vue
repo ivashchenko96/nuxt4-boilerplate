@@ -16,7 +16,11 @@
     </div>
 
     <div class="overflow-x-auto">
-      <table class="w-full text-sm text-left" role="grid" :aria-label="ariaLabel">
+      <table
+        class="w-full text-sm text-left"
+        role="grid"
+        :aria-label="ariaLabel"
+      >
         <thead class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
           <tr>
             <th
@@ -30,15 +34,25 @@
               :aria-sort="tableState.sortKey === col.key ? (tableState.sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'"
               @click="col.sortable && onSort(String(col.key))"
             >
-              <div class="flex items-center gap-1" :class="col.align === 'right' ? 'justify-end' : col.align === 'center' ? 'justify-center' : ''">
+              <div
+                class="flex items-center gap-1"
+                :class="col.align === 'right' ? 'justify-end' : col.align === 'center' ? 'justify-center' : ''"
+              >
                 {{ col.label }}
-                <span v-if="col.sortable" class="text-gray-400">
+                <span
+                  v-if="col.sortable"
+                  class="text-gray-400"
+                >
                   <UIcon
                     v-if="tableState.sortKey === col.key"
                     :name="tableState.sortOrder === 'asc' ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
                     class="w-3.5 h-3.5"
                   />
-                  <UIcon v-else name="i-heroicons-chevron-up-down" class="w-3.5 h-3.5 opacity-50" />
+                  <UIcon
+                    v-else
+                    name="i-heroicons-chevron-up-down"
+                    class="w-3.5 h-3.5 opacity-50"
+                  />
                 </span>
               </div>
             </th>
@@ -46,18 +60,34 @@
         </thead>
         <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
           <template v-if="loading">
-            <tr v-for="i in tableState.perPage" :key="i" class="animate-pulse">
-              <td v-for="col in columns" :key="String(col.key)" class="px-4 py-3">
+            <tr
+              v-for="i in tableState.perPage"
+              :key="i"
+              class="animate-pulse"
+            >
+              <td
+                v-for="col in columns"
+                :key="String(col.key)"
+                class="px-4 py-3"
+              >
                 <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded" />
               </td>
             </tr>
           </template>
 
           <tr v-else-if="!rows.length">
-            <td :colspan="columns.length" class="px-4 py-12 text-center">
+            <td
+              :colspan="columns.length"
+              class="px-4 py-12 text-center"
+            >
               <div class="flex flex-col items-center gap-3">
-                <UIcon name="i-heroicons-inbox" class="w-12 h-12 text-gray-300 dark:text-gray-600" />
-                <p class="text-gray-500 dark:text-gray-400 font-medium">{{ emptyText || $t('table.noData') }}</p>
+                <UIcon
+                  name="i-heroicons-inbox"
+                  class="w-12 h-12 text-gray-300 dark:text-gray-600"
+                />
+                <p class="text-gray-500 dark:text-gray-400 font-medium">
+                  {{ emptyText || $t('table.noData') }}
+                </p>
               </div>
             </td>
           </tr>
@@ -76,7 +106,11 @@
                   col.align === 'center' ? 'text-center' : col.align === 'right' ? 'text-right' : 'text-left',
                 ]"
               >
-                <slot :name="`cell-${String(col.key)}`" :row="row" :value="(row as Record<string, unknown>)[String(col.key)]">
+                <slot
+                  :name="`cell-${String(col.key)}`"
+                  :row="row"
+                  :value="(row as Record<string, unknown>)[String(col.key)]"
+                >
                   {{ (row as Record<string, unknown>)[String(col.key)] }}
                 </slot>
               </td>

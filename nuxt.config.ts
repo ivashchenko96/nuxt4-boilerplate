@@ -1,10 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  future: {
-    compatibilityVersion: 4,
-  },
-  compatibilityDate: '2025-01-01',
-  devtools: { enabled: true },
 
   modules: [
     '@nuxt/ui',
@@ -19,6 +14,35 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
   ],
 
+  ssr: true,
+  devtools: { enabled: true },
+
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      meta: [
+        { name: 'format-detection', content: 'telephone=no' },
+        { name: 'theme-color', content: '#0f172a' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/icons/icon-192x192.png' },
+      ],
+    },
+  },
+
+  css: ['~/assets/css/main.css'],
+
+  colorMode: {
+    classSuffix: '',
+    preference: 'system',
+    fallback: 'light',
+  },
+
   runtimeConfig: {
     jwtSecret: process.env.JWT_SECRET || '',
     apiSecret: process.env.API_SECRET || '',
@@ -31,6 +55,40 @@ export default defineNuxtConfig({
       enablePwa: process.env.NUXT_PUBLIC_ENABLE_PWA !== 'false',
       enableSeo: process.env.NUXT_PUBLIC_ENABLE_SEO !== 'false',
     },
+  },
+
+  routeRules: {
+    '/': { prerender: true },
+    '/about': { prerender: true },
+    '/contact': { prerender: true },
+    '/auth/**': { ssr: true, robots: false },
+    '/dashboard/**': { ssr: false, robots: false },
+    '/api/**': { ssr: false },
+  },
+  future: {
+    compatibilityVersion: 4,
+  },
+  compatibilityDate: '2025-01-01',
+
+  nitro: {
+    compressPublicAssets: true,
+  },
+
+  typescript: {
+    strict: true,
+    typeCheck: false,
+  },
+
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
+
+  fonts: {
+    families: [
+      { name: 'Inter', provider: 'google' },
+    ],
   },
 
   i18n: {
@@ -49,21 +107,9 @@ export default defineNuxtConfig({
     },
   },
 
-  colorMode: {
-    classSuffix: '',
-    preference: 'system',
-    fallback: 'light',
-  },
-
   image: {
     quality: 80,
     formats: ['webp', 'jpeg'],
-  },
-
-  fonts: {
-    families: [
-      { name: 'Inter', provider: 'google' },
-    ],
   },
 
   pwa: {
@@ -98,57 +144,11 @@ export default defineNuxtConfig({
     },
   },
 
-  sitemap: {
-    strictNuxtContentPaths: false,
-  },
-
   robots: {
     disallow: ['/dashboard', '/auth'],
   },
 
-  eslint: {
-    config: {
-      stylistic: true,
-    },
-  },
-
-  typescript: {
-    strict: true,
-    typeCheck: false,
-  },
-
-  css: ['~/assets/css/main.css'],
-
-  ssr: true,
-
-  routeRules: {
-    '/': { prerender: true },
-    '/about': { prerender: true },
-    '/contact': { prerender: true },
-    '/auth/**': { ssr: true, robots: false },
-    '/dashboard/**': { ssr: false, robots: false },
-    '/api/**': { ssr: false },
-  },
-
-  nitro: {
-    compressPublicAssets: true,
-  },
-
-  app: {
-    head: {
-      charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
-      htmlAttrs: {
-        lang: 'en',
-      },
-      meta: [
-        { name: 'format-detection', content: 'telephone=no' },
-        { name: 'theme-color', content: '#0f172a' },
-      ],
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', href: '/icons/icon-192x192.png' },
-      ],
-    },
+  sitemap: {
+    strictNuxtContentPaths: false,
   },
 })

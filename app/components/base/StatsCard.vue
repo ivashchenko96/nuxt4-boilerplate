@@ -7,7 +7,10 @@
           colorClasses[color || 'blue'],
         ]"
       >
-        <UIcon :name="icon" class="w-5 h-5" />
+        <UIcon
+          :name="icon"
+          class="w-5 h-5"
+        />
       </div>
       <span
         v-if="trend !== undefined"
@@ -20,8 +23,12 @@
       </span>
     </div>
     <div>
-      <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ value }}</p>
-      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ label }}</p>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">
+        {{ value }}
+      </p>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+        {{ label }}
+      </p>
     </div>
   </div>
 </template>
