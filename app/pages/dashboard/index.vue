@@ -1,10 +1,10 @@
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+      <h1 class="text-3xl font-editorial text-ink">
         {{ $t('dashboard.welcome', { name: user?.name }) }}
       </h1>
-      <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">
+      <p class="text-muted text-sm mt-2">
         {{ $t('dashboard.subtitle') }}
       </p>
     </div>
@@ -22,11 +22,11 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">
+      <div class="ui-panel p-6">
+        <h2 class="text-xl font-editorial text-ink mb-4">
           {{ $t('dashboard.activityChart') }}
         </h2>
-        <div class="h-48 flex items-center justify-center text-gray-400 dark:text-gray-600">
+        <div class="h-48 flex items-center justify-center text-muted">
           <div class="text-center">
             <UIcon
               name="i-heroicons-chart-bar"
@@ -39,8 +39,8 @@
         </div>
       </div>
 
-      <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">
+      <div class="ui-panel p-6">
+        <h2 class="text-xl font-editorial text-ink mb-4">
           {{ $t('dashboard.recentActivity') }}
         </h2>
         <ul class="space-y-3">
@@ -49,17 +49,17 @@
             :key="activity.id"
             class="flex items-start gap-3"
           >
-            <div class="w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center flex-shrink-0">
+            <div class="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center flex-shrink-0">
               <UIcon
                 :name="activity.icon"
-                class="w-4 h-4 text-brand-600 dark:text-brand-400"
+                class="w-4 h-4 text-brand-700"
               />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-sm text-gray-700 dark:text-gray-300">
+              <p class="text-sm text-ink">
                 {{ activity.message }}
               </p>
-              <p class="text-xs text-gray-400 mt-0.5">
+              <p class="text-xs text-muted mt-0.5">
                 {{ activity.time }}
               </p>
             </div>
@@ -68,8 +68,8 @@
       </div>
     </div>
 
-    <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-      <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">
+    <div class="ui-panel p-6">
+      <h2 class="text-xl font-editorial text-ink mb-4">
         {{ $t('dashboard.quickActions') }}
       </h2>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">

@@ -4,6 +4,7 @@ import { parseJwtPayload } from '~~/shared/utils'
 
 const TOKEN_KEY = 'auth_access_token'
 const REFRESH_KEY = 'auth_refresh_token'
+const USER_KEY = 'auth_user'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)
@@ -35,6 +36,9 @@ export const useAuthStore = defineStore('auth', () => {
 
   function setUser(newUser: User) {
     user.value = newUser
+    if (import.meta.client) {
+      sessionStorage.setItem(USER_KEY, JSON.stringify(newUser))
+    }
   }
 
   function clearAuth() {
@@ -43,6 +47,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (import.meta.client) {
       sessionStorage.removeItem(TOKEN_KEY)
       sessionStorage.removeItem(REFRESH_KEY)
+      sessionStorage.removeItem(USER_KEY)
     }
   }
 
@@ -66,6 +71,15 @@ export const useAuthStore = defineStore('auth', () => {
         accessToken,
         refreshToken,
         expiresAt,
+      }
+    }
+    const storedUser = sessionStorage.getItem(USER_KEY)
+    if (storedUser) {
+      try {
+        user.value = JSON.parse(storedUser) as User
+      }
+      catch {
+        sessionStorage.removeItem(USER_KEY)
       }
     }
   }

@@ -6,12 +6,10 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
-    '@vite-pwa/nuxt',
   ],
 
   ssr: true,
@@ -26,7 +24,7 @@ export default defineNuxtConfig({
       },
       meta: [
         { name: 'format-detection', content: 'telephone=no' },
-        { name: 'theme-color', content: '#0f172a' },
+        { name: 'theme-color', content: '#b86f56' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -52,8 +50,8 @@ export default defineNuxtConfig({
       appName: process.env.NUXT_PUBLIC_APP_NAME || 'Enterprise Platform',
       appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:3000',
       defaultLocale: 'en',
-      enablePwa: process.env.NUXT_PUBLIC_ENABLE_PWA !== 'false',
       enableSeo: process.env.NUXT_PUBLIC_ENABLE_SEO !== 'false',
+      authProvider: process.env.NUXT_PUBLIC_AUTH_PROVIDER || 'mock',
       // AI configuration — injected at runtime, never baked into the image
       aiBaseUrl: process.env.NUXT_PUBLIC_AI_BASE_URL || '',
       aiDefaultModel: process.env.NUXT_PUBLIC_AI_DEFAULT_MODEL || 'gpt-4o',
@@ -90,12 +88,6 @@ export default defineNuxtConfig({
     },
   },
 
-  fonts: {
-    families: [
-      { name: 'Inter', provider: 'google' },
-    ],
-  },
-
   i18n: {
     locales: [
       { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
@@ -114,38 +106,6 @@ export default defineNuxtConfig({
   image: {
     quality: 80,
     format: ['webp', 'jpeg'],
-  },
-
-  pwa: {
-    registerType: 'autoUpdate',
-    manifest: {
-      name: 'Enterprise Platform',
-      short_name: 'EntPlatform',
-      theme_color: '#0f172a',
-      background_color: '#ffffff',
-      display: 'standalone',
-      orientation: 'portrait',
-      scope: '/',
-      start_url: '/',
-      icons: [
-        { src: 'icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
-        { src: 'icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
-        { src: 'icons/icon-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
-      ],
-    },
-    workbox: {
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-      navigateFallback: null,
-    },
-    client: {
-      installPrompt: true,
-    },
-    devOptions: {
-      enabled: false,
-      suppressWarnings: true,
-      navigateFallbackAllowlist: [/^\/$/],
-      type: 'module',
-    },
   },
 
   robots: {

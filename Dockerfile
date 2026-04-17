@@ -1,7 +1,7 @@
 # ============================================================
 # Stage 1 — deps: install ALL dependencies (including devDeps)
 # ============================================================
-FROM node:22-alpine AS deps
+FROM node:24-alpine AS deps
 
 # Install build tools needed for native modules
 RUN apk add --no-cache libc6-compat python3 make g++
@@ -18,7 +18,7 @@ RUN npm ci --ignore-scripts
 # ============================================================
 # Stage 2 — builder: build the Nuxt application
 # ============================================================
-FROM node:22-alpine AS builder
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 
@@ -47,7 +47,7 @@ RUN npm run build
 # ============================================================
 # Stage 3 — runner: lean production image
 # ============================================================
-FROM node:22-alpine AS runner
+FROM node:24-alpine AS runner
 
 LABEL org.opencontainers.image.title="nuxt4-boilerplate"
 LABEL org.opencontainers.image.description="Production-ready Nuxt 4 enterprise boilerplate"

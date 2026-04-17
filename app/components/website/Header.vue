@@ -1,16 +1,16 @@
 <template>
-  <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+  <header class="sticky top-0 z-50 bg-paper/95 backdrop-blur border-b border-soft">
     <nav
       class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
       aria-label="Main navigation"
     >
       <NuxtLink
         :to="localePath('/')"
-        class="flex items-center gap-2 font-bold text-xl text-gray-900 dark:text-white"
+        class="flex items-center gap-2 text-xl font-semibold text-ink font-editorial"
       >
         <UIcon
           name="i-heroicons-building-office-2"
-          class="w-7 h-7 text-brand-600"
+          class="w-7 h-7 text-brand-500"
         />
         {{ config.public.appName }}
       </NuxtLink>
@@ -20,7 +20,7 @@
           v-for="item in navItems"
           :key="item.to"
           :to="localePath(item.to)"
-          class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+          class="text-sm font-medium text-muted hover:text-brand-600 transition-colors"
         >
           {{ item.label }}
         </NuxtLink>
@@ -67,14 +67,14 @@
     >
       <div
         v-if="mobileMenuOpen"
-        class="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950"
+        class="md:hidden border-t border-soft bg-paper"
       >
         <div class="px-4 py-4 space-y-2">
           <NuxtLink
             v-for="item in navItems"
             :key="item.to"
             :to="localePath(item.to)"
-            class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            class="block px-3 py-2 rounded-lg text-sm font-medium text-muted hover:bg-surface hover:text-ink"
             @click="mobileMenuOpen = false"
           >
             {{ item.label }}

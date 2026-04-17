@@ -35,7 +35,7 @@ A **production-ready Nuxt 4 enterprise boilerplate** designed to serve as the fo
 ## Quick Start
 
 ```bash
-# Prerequisites: Node 22+, npm 9+
+# Prerequisites: Node 24+, npm 11+
 git clone https://github.com/ivashchenko96/nuxt4-boilerplate.git
 cd nuxt4-boilerplate
 npm install          # also installs Husky Git hooks
@@ -55,7 +55,6 @@ npm run dev          # starts dev server at http://localhost:3000
 | Auth        | JWT (external backend), refresh token strategy       |
 | i18n        | @nuxtjs/i18n (EN, DE)                                |
 | SEO         | @nuxtjs/sitemap + @nuxtjs/robots                     |
-| PWA         | @vite-pwa/nuxt                                       |
 | Linting     | ESLint + @nuxt/eslint                                |
 | Git Hooks   | Husky + lint-staged + commitlint                     |
 | Types       | TypeScript 5 + vue-tsc                               |
@@ -72,7 +71,7 @@ nuxt4-boilerplate/
 │   ├── components/               # base/, dashboard/, shared/, website/
 │   ├── composables/              # useAuth, useApiClient, useSeo, useTenant, usePermissions
 │   ├── layouts/                  # default, dashboard, auth
-│   ├── middleware/               # auth.ts, tenant.global.ts, permissions.ts
+│   ├── middleware/               # auth.ts, require-auth.global.ts, tenant.global.ts, permissions.ts
 │   ├── pages/                    # File-based routing
 │   ├── plugins/                  # auth.client.ts (JWT service)
 │   └── stores/                   # auth, tenant, ui (Pinia)
@@ -84,7 +83,7 @@ nuxt4-boilerplate/
 │   └── utils/index.ts            # Pure utilities
 ├── locales/en.json               # English translations
 ├── locales/de.json               # German translations
-├── public/icons/                 # PWA icons
+├── public/icons/                 # App icons
 ├── deploy/
 │   ├── nginx/nuxt4-app.conf      # Nginx reverse proxy config
 │   ├── caddy/Caddyfile           # Caddy reverse proxy config
@@ -119,7 +118,7 @@ Copy `.env.example` to `.env` for local development. **Never commit `.env`**.
 | `NUXT_PUBLIC_APP_URL`         | Public  | Canonical public URL                       |
 | `NUXT_PUBLIC_API_BASE_URL`    | Public  | REST API base URL (client-side)            |
 | `NUXT_PUBLIC_AUTH_BASE_URL`   | Public  | Auth service base URL                      |
-| `NUXT_PUBLIC_ENABLE_PWA`      | Public  | Enable PWA (default: true)                 |
+| `NUXT_PUBLIC_AUTH_PROVIDER`   | Public  | Auth mode: `mock` (demo) or `api` (real)   |
 | `NUXT_PUBLIC_ENABLE_SEO`      | Public  | Enable SEO meta (default: true)            |
 | `NUXT_PUBLIC_DEFAULT_TENANT`  | Public  | Default tenant slug                        |
 | `JWT_SECRET`                  | Private | Server-only JWT secret (never to client)   |

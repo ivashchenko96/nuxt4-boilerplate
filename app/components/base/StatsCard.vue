@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+  <div class="ui-panel p-6">
     <div class="flex items-center justify-between mb-4">
       <div
         :class="[
@@ -16,17 +16,17 @@
         v-if="trend !== undefined"
         :class="[
           'text-xs font-medium px-2 py-1 rounded-full',
-          trend >= 0 ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+          trend >= 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700',
         ]"
       >
         {{ trend >= 0 ? '+' : '' }}{{ trend }}%
       </span>
     </div>
     <div>
-      <p class="text-2xl font-bold text-gray-900 dark:text-white">
+      <p class="text-2xl font-semibold text-ink">
         {{ value }}
       </p>
-      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+      <p class="text-sm text-muted mt-1">
         {{ label }}
       </p>
     </div>
@@ -43,9 +43,9 @@ defineProps<{
 }>()
 
 const colorClasses = {
-  blue: 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400',
-  green: 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400',
-  purple: 'bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400',
-  orange: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400',
+  blue: 'bg-brand-100 text-brand-700',
+  green: 'bg-emerald-100 text-emerald-700',
+  purple: 'bg-amber-100 text-amber-700',
+  orange: 'bg-orange-100 text-orange-700',
 }
 </script>

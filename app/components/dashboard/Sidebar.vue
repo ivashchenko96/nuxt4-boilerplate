@@ -1,25 +1,25 @@
 <template>
   <aside
     :class="[
-      'flex flex-col bg-gray-900 dark:bg-gray-950 text-white transition-all duration-300',
+      'flex flex-col bg-surface text-ink transition-all duration-300 border-r border-soft',
       uiStore.sidebarOpen ? 'w-64' : 'w-0 overflow-hidden',
       'md:relative fixed inset-y-0 left-0 z-40',
       uiStore.sidebarCollapsed ? 'md:w-16' : 'md:w-64',
     ]"
     aria-label="Dashboard sidebar navigation"
   >
-    <div class="h-16 flex items-center px-4 border-b border-gray-800">
+    <div class="h-16 flex items-center px-4 border-b border-soft">
       <NuxtLink
         :to="localePath('/dashboard')"
         class="flex items-center gap-3 min-w-0"
       >
         <UIcon
           name="i-heroicons-building-office-2"
-          class="w-7 h-7 text-brand-400 flex-shrink-0"
+          class="w-7 h-7 text-brand-500 flex-shrink-0"
         />
         <span
           v-if="!uiStore.sidebarCollapsed"
-          class="font-bold text-lg truncate"
+          class="font-semibold text-lg truncate font-editorial"
         >{{ config.public.appName }}</span>
       </NuxtLink>
     </div>
@@ -37,8 +37,8 @@
           :class="[
             'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors group',
             isActive(item.to)
-              ? 'bg-brand-600 text-white'
-              : 'text-gray-400 hover:bg-gray-800 hover:text-white',
+              ? 'bg-brand-100 text-brand-900'
+              : 'text-muted hover:bg-surface-strong hover:text-ink',
           ]"
           :aria-current="isActive(item.to) ? 'page' : undefined"
         >
@@ -54,7 +54,7 @@
       </template>
     </nav>
 
-    <div class="border-t border-gray-800 p-3">
+    <div class="border-t border-soft p-3">
       <div
         v-if="!uiStore.sidebarCollapsed"
         class="flex items-center gap-3 px-3 py-2"
@@ -62,13 +62,13 @@
         <UAvatar
           :alt="user?.name"
           size="sm"
-          class="bg-brand-600 flex-shrink-0"
+          class="bg-brand-500 text-white flex-shrink-0"
         />
         <div class="flex-1 min-w-0">
-          <p class="text-sm font-medium text-white truncate">
+          <p class="text-sm font-medium text-ink truncate">
             {{ user?.name }}
           </p>
-          <p class="text-xs text-gray-400 truncate">
+          <p class="text-xs text-muted truncate">
             {{ user?.email }}
           </p>
         </div>
@@ -102,7 +102,7 @@
   >
     <div
       v-if="uiStore.sidebarOpen"
-      class="md:hidden fixed inset-0 bg-black/60 z-30"
+      class="md:hidden fixed inset-0 bg-[#2f2721]/35 z-30"
       aria-hidden="true"
       @click="uiStore.sidebarOpen = false"
     />

@@ -7,11 +7,63 @@ interface AuthService {
   getProfile: () => Promise<User>
 }
 
+function createMockTokens(seed: string): AuthTokens {
+  const expiresAt = Date.now() + 1000 * 60 * 60
+  const payload = btoa(JSON.stringify({ seed, exp: Math.floor(expiresAt / 1000) }))
+  return {
+    accessToken: `mock.${payload}.sig`,
+    refreshToken: `mock-refresh.${payload}.sig`,
+    expiresAt,
+  }
+}
+
+function createMockUser(email: string): User {
+  const [namePart = 'Workspace'] = email.split('@')
+  const displayName = namePart
+    .split(/[._-]/g)
+    .filter(Boolean)
+    .map(chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+    .join(' ') || 'Workspace User'
+
+  return {
+    id: crypto.randomUUID(),
+    email: email || 'demo@example.com',
+    name: displayName,
+    roles: ['admin'],
+    permissions: ['dashboard:view', 'users:view', 'reports:view', 'settings:view'],
+  }
+}
+
 export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
   const authBaseUrl = config.public.authBaseUrl as string
+  const authProvider = String(config.public.authProvider || 'mock')
 
-  const authService: AuthService = {
+  const mockAuthService: AuthService = {
+    async login(credentials) {
+      const email = credentials.email || 'demo@example.com'
+      return {
+        user: createMockUser(email),
+        tokens: createMockTokens(email),
+      }
+    },
+
+    async logout() {},
+
+    async refreshToken(refreshToken: string) {
+      return createMockTokens(refreshToken)
+    },
+
+    async getProfile() {
+      const authStore = useAuthStore()
+      if (authStore.user) {
+        return authStore.user
+      }
+      return createMockUser('demo@example.com')
+    },
+  }
+
+  const apiAuthService: AuthService = {
     async login(credentials) {
       const response = await fetch(`${authBaseUrl}/auth/login`, {
         method: 'POST',
@@ -59,10 +111,12 @@ export default defineNuxtPlugin(async () => {
     },
   }
 
+  const authService = authProvider === 'api' ? apiAuthService : mockAuthService
+
   const authStore = useAuthStore()
   authStore.loadTokensFromStorage()
 
-  if (authStore.tokens?.accessToken) {
+  if (authStore.tokens?.accessToken && !authStore.user) {
     try {
       const user = await authService.getProfile()
       authStore.setUser(user)
