@@ -1,0 +1,102 @@
+# nuxt4-boilerplate
+
+> Production-ready Nuxt 4 enterprise boilerplate with authentication, multi-tenancy, i18n, PWA, and a full AI assistant layer.
+
+## Overview
+
+This is a Nuxt 4 frontend-only boilerplate structured for enterprise teams. It includes:
+
+- Nuxt 4 (compatibilityVersion: 4, srcDir: app/)
+- @nuxt/ui (Tailwind-based component library)
+- Pinia stores for state management
+- JWT authentication with token refresh
+- Multi-tenancy (subdomain-based)
+- i18n (English + German, lazy-loaded)
+- PWA support
+- Dashboard layout with sidebar navigation
+- AI assistant layer (Phase 2)
+
+## Important Directories
+
+- `app/` — main source directory (Nuxt 4 srcDir)
+  - `components/` — Vue components (auto-imported)
+    - `ai/` — all AI-related UI components
+    - `base/` — reusable base components (DataTable, StatsCard)
+    - `dashboard/` — dashboard layout components (Header, Sidebar)
+    - `shared/` — shared UI utilities (ColorModeToggle, LanguageSwitcher)
+    - `website/` — public-facing page components
+  - `composables/` — auto-imported composables
+    - `useAiChat.ts` — streaming AI chat with external providers
+    - `usePrompts.ts` — prompt template management
+    - `useMcp.ts` — MCP (Model Context Protocol) integration
+    - `useAuth.ts` — authentication helpers
+    - `useApiClient.ts` — typed HTTP client with auth headers
+  - `stores/` — Pinia stores (auto-imported)
+    - `ai.ts` — AI state: conversations, settings, panel open/close
+    - `auth.ts` — authentication state
+    - `ui.ts` — UI state (sidebar, notifications)
+    - `tenant.ts` — multi-tenant state
+  - `pages/` — file-based routing
+    - `dashboard/ai/index.vue` — full-screen AI assistant page
+    - `dashboard/settings.vue` — includes AI settings section
+  - `ai/prompts/` — prompt registry
+    - `index.ts` — main entry point
+    - `groups.ts` — categorized prompt templates
+    - `system.ts` — system-level prompts
+  - `plugins/` — Nuxt plugins
+    - `ai.client.ts` — AI store hydration and provider config
+    - `auth.client.ts` — auth initialization
+  - `layouts/` — page layouts
+    - `dashboard.vue` — includes AI panel component
+
+## AI Architecture
+
+The AI layer is frontend-only. All intelligence comes from external services.
+
+### Provider integration
+- `useAiChat.ts` sends requests to `NUXT_PUBLIC_AI_BASE_URL/chat/completions`
+- Uses OpenAI-compatible streaming SSE format
+- Compatible with: OpenAI, Azure OpenAI, Anthropic (via proxy), Ollama, LiteLLM, any OpenAI-compatible gateway
+- No API keys in the frontend — configure a gateway/proxy server-side
+
+### Prompt system
+- Structured prompt registry in `app/ai/prompts/`
+- Prompts support `{{variable}}` interpolation
+- Categories: general, analysis, writing, coding, data, summarization, translation, custom
+- Suggested prompts appear in the AI empty state
+
+### MCP support
+- `useMcp.ts` integrates with external MCP servers via JSON-RPC
+- Supports: tools/list, tools/call, resources/list, resources/read, prompts/list, prompts/get
+- Configure via `NUXT_PUBLIC_MCP_SERVER_URL`
+
+### Key components
+- `AiPanel` — slide-over assistant panel (Ctrl+I to toggle)
+- `AiCommandPalette` — quick actions (Ctrl+K)
+- `AiPromptPicker` — searchable prompt browser
+- `AiMarkdownContent` — safe inline markdown renderer (no external deps)
+- `AiMessage` — chat message with streaming, citations, tool results
+- `AiInput` — textarea with file attachment and prompt picker
+
+## Environment Variables (AI-related)
+
+- `NUXT_PUBLIC_AI_BASE_URL` — AI gateway endpoint (required for AI features)
+- `NUXT_PUBLIC_AI_DEFAULT_MODEL` — default model ID (e.g. gpt-4o)
+- `NUXT_PUBLIC_AI_DEFAULT_PROVIDER` — provider kind
+- `NUXT_PUBLIC_MCP_SERVER_URL` — MCP server URL (optional)
+
+## Key Files
+
+- `/nuxt.config.ts` — Nuxt configuration with runtimeConfig
+- `/app/stores/ai.ts` — AI Pinia store (conversations, settings, streaming state)
+- `/app/composables/useAiChat.ts` — streaming chat composable
+- `/app/ai/prompts/groups.ts` — all prompt templates
+- `/shared/types/ai.ts` — TypeScript types for AI features
+- `/public/llms.txt` — this file
+- `/public/llms-full.txt` — extended AI-readable documentation
+
+## Docs
+
+- `README.md` — full setup, deployment, and DevOps guide
+- `CONTRIBUTING.md` — team workflow, commit conventions, PR process
+- `deploy/` — nginx, caddy, vercel, and other deployment configs

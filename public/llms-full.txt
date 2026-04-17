@@ -1,0 +1,276 @@
+# nuxt4-boilerplate — Extended AI Documentation
+
+> This file provides detailed context for AI assistants, code generation tools,
+> and LLM-based developer tools working with this codebase.
+
+## Project Identity
+
+- **Name**: nuxt4-boilerplate
+- **Type**: Nuxt 4 enterprise frontend boilerplate
+- **Tech stack**: Nuxt 4, Vue 3, TypeScript, Tailwind CSS, @nuxt/ui, Pinia, Nitro
+- **Architecture**: SSR with SPA dashboard (routeRules per path)
+- **Testing**: Not yet added — see CONTRIBUTING.md for guidance
+- **Package manager**: npm
+
+## Directory Structure
+
+```
+nuxt4-boilerplate/
+├── app/                         # Nuxt 4 srcDir
+│   ├── ai/
+│   │   └── prompts/
+│   │       ├── index.ts         # Prompt registry entry point
+│   │       ├── groups.ts        # Categorized prompt templates
+│   │       └── system.ts        # System-level assistant prompts
+│   ├── assets/css/main.css      # Global Tailwind CSS
+│   ├── components/
+│   │   ├── ai/                  # All AI UI components
+│   │   │   ├── Panel.vue        # Slide-over AI assistant panel
+│   │   │   ├── MessageList.vue  # Scrollable message list
+│   │   │   ├── Message.vue      # Single chat message
+│   │   │   ├── MarkdownContent.vue  # Safe inline markdown renderer
+│   │   │   ├── Input.vue        # Chat input with file attach
+│   │   │   ├── PromptPicker.vue # Searchable prompt browser
+│   │   │   ├── CommandPalette.vue  # Ctrl+K command palette
+│   │   │   ├── ToolResult.vue   # MCP/tool result display
+│   │   │   ├── EmptyState.vue   # Empty chat state with suggestions
+│   │   │   ├── StreamCursor.vue # Blinking streaming cursor
+│   │   │   ├── FileChip.vue     # Attached file badge
+│   │   │   └── CitationBadge.vue  # Citation/source badge
+│   │   ├── base/
+│   │   │   ├── DataTable.vue    # Generic sortable data table
+│   │   │   └── StatsCard.vue    # KPI stat card
+│   │   ├── dashboard/
+│   │   │   ├── Header.vue       # Dashboard top bar (with AI toggle)
+│   │   │   └── Sidebar.vue      # Dashboard sidebar nav
+│   │   ├── shared/
+│   │   │   ├── ColorModeToggle.vue
+│   │   │   └── LanguageSwitcher.vue
+│   │   └── website/
+│   │       ├── Header.vue
+│   │       └── Footer.vue
+│   ├── composables/
+│   │   ├── useAiChat.ts         # Streaming AI chat composable
+│   │   ├── usePrompts.ts        # Prompt template management
+│   │   ├── useMcp.ts            # MCP protocol integration
+│   │   ├── useAuth.ts           # Auth helpers
+│   │   ├── useApiClient.ts      # HTTP client
+│   │   ├── usePermissions.ts    # RBAC helpers
+│   │   ├── useSeo.ts            # SEO metadata helper
+│   │   └── useTenant.ts         # Multi-tenant helpers
+│   ├── layouts/
+│   │   ├── dashboard.vue        # Dashboard layout (includes AiPanel)
+│   │   ├── default.vue          # Public page layout
+│   │   └── auth.vue             # Auth page layout
+│   ├── middleware/
+│   │   ├── auth.ts              # Route auth guard
+│   │   ├── permissions.ts       # RBAC route guard
+│   │   └── tenant.global.ts     # Global tenant detection
+│   ├── pages/
+│   │   ├── index.vue            # Landing page
+│   │   ├── about.vue
+│   │   ├── contact.vue
+│   │   ├── auth/login.vue
+│   │   └── dashboard/
+│   │       ├── index.vue        # Dashboard home
+│   │       ├── ai/index.vue     # Full-screen AI assistant
+│   │       ├── reports.vue
+│   │       ├── settings.vue     # Includes AI settings section
+│   │       └── users/index.vue
+│   ├── plugins/
+│   │   ├── ai.client.ts         # AI store init + provider config
+│   │   └── auth.client.ts       # Auth init
+│   └── stores/
+│       ├── ai.ts                # AI Pinia store
+│       ├── auth.ts              # Auth Pinia store
+│       ├── tenant.ts            # Tenant Pinia store
+│       └── ui.ts                # UI Pinia store
+├── locales/
+│   ├── en.json                  # English translations (includes ai.*)
+│   └── de.json                  # German translations (includes ai.*)
+├── server/
+│   ├── api/health.get.ts        # GET /api/health endpoint
+│   └── middleware/security.ts   # Security headers
+├── shared/
+│   ├── types/
+│   │   ├── index.ts             # Re-exports all types
+│   │   └── ai.ts                # AI-specific TypeScript types
+│   └── utils/index.ts           # Shared utilities
+├── public/
+│   ├── llms.txt                 # AI-readable project summary
+│   └── llms-full.txt            # This file
+├── deploy/
+│   ├── nginx/nuxt4-app.conf     # Nginx reverse proxy config
+│   ├── caddy/Caddyfile          # Caddy reverse proxy config
+│   └── vercel/vercel.json       # Vercel deployment config
+├── .github/
+│   ├── workflows/ci.yml         # CI pipeline
+│   └── dependabot.yml           # Dependency updates
+├── nuxt.config.ts               # Nuxt configuration
+├── Dockerfile                   # Multi-stage production Dockerfile
+├── docker-compose.yml           # Local dev + prod-like compose
+├── .env.example                 # Environment variable reference
+├── README.md                    # Full documentation
+└── CONTRIBUTING.md              # Team workflow guide
+```
+
+## AI Layer — Detailed
+
+### Data Flow
+
+```
+User types message
+  → AiInput.vue emits 'send'
+  → AiPanel.vue / ai/index.vue calls useAiChat().sendMessage()
+  → useAiChat reads aiStore.settings.provider.baseUrl
+  → POST {baseUrl}/chat/completions (OpenAI-compatible SSE)
+  → ReadableStream chunks parsed, appended to message in aiStore
+  → AiMessageList re-renders as stream arrives
+  → AiMessage renders via AiMarkdownContent
+```
+
+### State Shape (aiStore)
+
+```typescript
+{
+  panelOpen: boolean,
+  commandPaletteOpen: boolean,
+  promptPickerOpen: boolean,
+  conversations: AiConversation[],      // persisted to localStorage
+  activeConversationId: string | null,
+  isStreaming: boolean,
+  settings: {
+    provider: {
+      kind: 'openai' | 'anthropic' | 'azure-openai' | 'custom',
+      baseUrl: string,      // from NUXT_PUBLIC_AI_BASE_URL
+      modelId: string,
+      maxTokens: number,
+      temperature: number,
+      topP: number,
+    },
+    enabled: boolean,
+    streamingEnabled: boolean,
+    showCitations: boolean,
+    maxConversations: number,
+    systemPromptOverride?: string,
+  }
+}
+```
+
+### Prompt Template Format
+
+```typescript
+interface PromptTemplate {
+  id: string,               // e.g. 'analysis.swot'
+  label: string,
+  description?: string,
+  category: PromptCategory, // general | analysis | writing | coding | data | ...
+  template: string,         // supports {{variable}} interpolation
+  variables?: PromptVariable[],
+  isSuggested?: boolean,    // shown in empty state
+  icon?: string,            // heroicons name
+  version?: string,         // for tracking changes
+  isSystem?: boolean,       // if true, prepended as system message
+}
+```
+
+### Adding New Prompts
+
+1. Open `app/ai/prompts/groups.ts`
+2. Add a new `PromptTemplate` to the appropriate `PromptGroup.prompts` array
+3. Set `isSuggested: true` to feature it in the empty state
+4. The UI picks up the change automatically — no other changes needed
+
+### MCP Integration Points
+
+```typescript
+// useMcp.ts provides:
+loadTools()                          // lists tools from MCP server
+callTool(name, args)                 // executes a tool
+loadResources()                      // lists available resources
+getResource(uri)                     // reads resource content
+loadPrompts()                        // lists MCP server prompts
+getMcpPrompt(name, args)             // renders a server-side prompt
+runToolAndInjectResult(name, args)   // calls tool + adds to conversation
+```
+
+### Provider Adapter
+
+To swap AI providers:
+1. Point `NUXT_PUBLIC_AI_BASE_URL` at a different endpoint
+2. Change `NUXT_PUBLIC_AI_DEFAULT_MODEL` to the target model
+3. For non-OpenAI formats, modify `streamResponse()` / `fetchFullResponse()` in `useAiChat.ts`
+4. The store and UI remain unchanged
+
+## Coding Conventions
+
+- **No semicolons** (ESLint stylistic)
+- **Single quotes** for strings
+- **2-space indentation**
+- **No `var`** — use `const`/`let`
+- Components use `<script setup lang="ts">`
+- Stores use Pinia composition API (setup stores)
+- Types from `~~/shared/types` (double tilde = repo root)
+- App imports use `~/` (single tilde = app/ srcDir)
+- Composables use `useXxx` naming
+- Store files use `useXxxStore` naming
+
+## i18n Keys (AI-related)
+
+All AI translations live under the `ai.*` namespace:
+- `ai.assistant` — panel title
+- `ai.emptyTitle` / `ai.emptySubtitle` — empty state
+- `ai.suggestions` — suggested prompts heading
+- `ai.inputPlaceholder` / `ai.inputHint` — input area
+- `ai.commandPalette` / `ai.commandPlaceholder` — command palette
+- `ai.notConfiguredWarning` / `ai.configureNow` — provider warning
+
+Settings translations under `settings.ai*`:
+- `settings.ai` — section heading
+- `settings.aiBaseUrl` / `settings.aiModel` / etc. — form fields
+
+## Environment Variable Reference (Complete)
+
+| Variable | Type | Description |
+|---|---|---|
+| `NUXT_PUBLIC_AI_BASE_URL` | public | AI gateway endpoint (OpenAI-compatible) |
+| `NUXT_PUBLIC_AI_DEFAULT_MODEL` | public | Default model ID |
+| `NUXT_PUBLIC_AI_DEFAULT_PROVIDER` | public | Provider kind |
+| `NUXT_PUBLIC_MCP_SERVER_URL` | public | MCP server URL |
+| `NUXT_PUBLIC_API_BASE_URL` | public | REST API base URL |
+| `NUXT_PUBLIC_AUTH_BASE_URL` | public | Auth service base URL |
+| `NUXT_PUBLIC_APP_NAME` | public | App display name |
+| `NUXT_PUBLIC_APP_URL` | public | App public URL |
+| `JWT_SECRET` | server-only | JWT signing secret |
+| `API_SECRET` | server-only | Internal API secret |
+
+## Security Notes
+
+- AI API keys MUST be handled server-side (gateway/proxy)
+- No secrets in `NUXT_PUBLIC_*` variables
+- `AiMarkdownContent` escapes HTML before processing — no XSS from AI responses
+- File uploads are local object URLs only — not sent to external storage by default
+- MCP server auth tokens are runtime-only, never in code
+
+## Build & Dev Commands
+
+```bash
+npm run dev          # Start dev server
+npm run build        # Production build
+npm run start        # Start production server
+npm run typecheck    # TypeScript type check
+npm run lint         # ESLint
+npm run ci:check     # lint + typecheck (for CI)
+npm run commit       # Commitizen guided commit
+```
+
+## Deployment Targets
+
+See README.md for detailed deployment guides for:
+- Docker / VPS
+- Vercel
+- Node.js + PM2
+- Heroku / Railway / Render
+- AWS serverless (Nitro preset)
+- Plesk / cPanel (static export fallback)
+- Nginx / Caddy reverse proxy

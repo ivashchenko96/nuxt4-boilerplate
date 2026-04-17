@@ -1,0 +1,66 @@
+# docker-compose.yml — Local development orchestration
+#
+# Usage:
+#   docker compose up           # start all services
+#   docker compose up --build   # rebuild images first
+#   docker compose down         # stop and remove containers
+#
+# The app service mounts your source code so changes are reflected without
+# rebuilding the image.  For a production-like local test use the
+# `app-prod` service instead.
+
+services:
+  # ── Development server (hot-reload via volume mount) ─────────────────────────
+  app:
+    build:
+      context: .
+      target: deps          # uses the deps stage — faster rebuild in dev
+    image: nuxt4-boilerplate-dev
+    container_name: nuxt4-dev
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount source for hot-reload; node_modules comes from the image
+      - .:/app
+      - /app/node_modules
+    env_file:
+      - .env.local           # create from .env.example; ignored by git
+    environment:
+      - NODE_ENV=development
+      - NUXT_HOST=0.0.0.0
+      - NUXT_PORT=3000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ── Production-like local test ────────────────────────────────────────────────
+  app-prod:
+    build:
+      context: .
+      target: runner         # full multi-stage production build
+      args:
+        NODE_ENV: production
+    image: nuxt4-boilerplate-prod
+    container_name: nuxt4-prod
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=production
+      - NITRO_PORT=3000
+      - NITRO_HOST=0.0.0.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    profiles:
+      - prod                 # only starts with: docker compose --profile prod up
