@@ -104,7 +104,6 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     langDir: '../locales/',
     strategy: 'prefix_except_default',
-    lazy: true,
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
@@ -114,7 +113,7 @@ export default defineNuxtConfig({
 
   image: {
     quality: 80,
-    formats: ['webp', 'jpeg'],
+    format: ['webp', 'jpeg'],
   },
 
   pwa: {
