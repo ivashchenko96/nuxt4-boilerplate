@@ -1,6 +1,6 @@
 # nuxt4-boilerplate
 
-> Production-ready Nuxt 4 enterprise boilerplate with authentication, multi-tenancy, i18n, PWA, and a full AI assistant layer.
+> Production-ready Nuxt 4 enterprise boilerplate with authentication, multi-tenancy, i18n, and a full AI assistant layer.
 
 ## Overview
 
@@ -12,7 +12,6 @@ This is a Nuxt 4 frontend-only boilerplate structured for enterprise teams. It i
 - JWT authentication with token refresh
 - Multi-tenancy (subdomain-based)
 - i18n (English + German, lazy-loaded)
-- PWA support
 - Dashboard layout with sidebar navigation
 - AI assistant layer (Phase 2)
 
