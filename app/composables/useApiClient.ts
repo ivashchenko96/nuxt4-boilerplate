@@ -13,7 +13,7 @@ export function useApiClient() {
 
   const baseUrl = config.public.apiBaseUrl as string
 
-  async function request<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
+  async function request<T>(endpoint: string, options: FetchOptions = {}): Promise<T | undefined> {
     const { query, ...fetchOptions } = options
 
     const url = new URL(`${baseUrl}${endpoint}`)
@@ -65,7 +65,7 @@ export function useApiClient() {
       throw new Error(errorData.message || `HTTP ${response.status}`)
     }
 
-    if (response.status === 204) return undefined as T
+    if (response.status === 204) return undefined
     return response.json() as Promise<T>
   }
 

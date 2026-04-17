@@ -65,7 +65,7 @@ export function parseJwtPayload(token: string): Record<string, unknown> | null {
  * Deep clone an object
  */
 export function deepClone<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj)) as T
+  return structuredClone(obj)
 }
 
 /**

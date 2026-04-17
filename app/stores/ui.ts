@@ -14,7 +14,7 @@ export const useUiStore = defineStore('ui', () => {
   }
 
   function addNotification(notification: { type: string, message: string }) {
-    const id = Date.now().toString()
+    const id = crypto.randomUUID()
     notifications.value.push({ ...notification, id })
     setTimeout(() => removeNotification(id), 5000)
     return id
