@@ -150,5 +150,50 @@
     "showing": "Showing {from}-{to} of {total}",
     "prevPage": "Previous page",
     "nextPage": "Next page"
+  },
+  "about": {
+    "meta": {
+      "title": "About",
+      "description": "Learn about our enterprise platform and our mission."
+    },
+    "title": "About Us",
+    "description": "Building the future of enterprise software, one module at a time.",
+    "missionTitle": "Our Mission",
+    "missionText": "We are committed to building high-quality, scalable, and secure enterprise software. Our platform is designed for teams who need reliability, extensibility, and a great developer experience.",
+    "values": {
+      "security": {
+        "title": "Security First",
+        "description": "Every feature is built with security as a core principle, not an afterthought."
+      },
+      "openSource": {
+        "title": "Open Source",
+        "description": "We believe in transparent, community-driven development and open standards."
+      },
+      "performance": {
+        "title": "Performance",
+        "description": "Optimized for speed with SSR, prerendering, and edge deployment support."
+      }
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Get in touch with our team."
+    },
+    "title": "Contact Us",
+    "description": "Have a question or want to learn more? We'd love to hear from you.",
+    "formTitle": "Send us a message",
+    "firstName": "First name",
+    "firstNamePlaceholder": "John",
+    "lastName": "Last name",
+    "lastNamePlaceholder": "Doe",
+    "email": "Email address",
+    "emailPlaceholder": "john{'@'}example.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "How can we help?",
+    "message": "Message",
+    "messagePlaceholder": "Tell us more about your project...",
+    "sendButton": "Send Message",
+    "successMessage": "Thank you! Your message has been sent. We'll get back to you shortly."
   }
 }

@@ -150,5 +150,50 @@
     "showing": "Zeige {from}-{to} von {total}",
     "prevPage": "Vorherige Seite",
     "nextPage": "Nächste Seite"
+  },
+  "about": {
+    "meta": {
+      "title": "Über uns",
+      "description": "Erfahren Sie mehr über unsere Enterprise-Plattform und unsere Mission."
+    },
+    "title": "Über uns",
+    "description": "Wir gestalten die Zukunft der Unternehmenssoftware, Modul für Modul.",
+    "missionTitle": "Unsere Mission",
+    "missionText": "Wir sind dem Aufbau hochwertiger, skalierbarer und sicherer Unternehmenssoftware verpflichtet. Unsere Plattform ist für Teams konzipiert, die Zuverlässigkeit, Erweiterbarkeit und eine großartige Entwicklererfahrung benötigen.",
+    "values": {
+      "security": {
+        "title": "Sicherheit zuerst",
+        "description": "Jede Funktion wird mit Sicherheit als Kernprinzip entwickelt, nicht als Nachgedanke."
+      },
+      "openSource": {
+        "title": "Open Source",
+        "description": "Wir glauben an transparente, gemeinschaftsgetriebene Entwicklung und offene Standards."
+      },
+      "performance": {
+        "title": "Performance",
+        "description": "Optimiert für Geschwindigkeit mit SSR, Prerendering und Edge-Deployment-Unterstützung."
+      }
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Kontakt",
+      "description": "Nehmen Sie Kontakt mit unserem Team auf."
+    },
+    "title": "Kontakt",
+    "description": "Haben Sie eine Frage oder möchten Sie mehr erfahren? Wir freuen uns von Ihnen zu hören.",
+    "formTitle": "Senden Sie uns eine Nachricht",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "Max",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "Mustermann",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "max{'@'}beispiel.de",
+    "subject": "Betreff",
+    "subjectPlaceholder": "Wie können wir helfen?",
+    "message": "Nachricht",
+    "messagePlaceholder": "Erzählen Sie uns mehr über Ihr Projekt...",
+    "sendButton": "Nachricht senden",
+    "successMessage": "Vielen Dank! Ihre Nachricht wurde gesendet. Wir melden uns in Kürze bei Ihnen."
   }
 }
