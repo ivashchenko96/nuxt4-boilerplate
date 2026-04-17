@@ -163,6 +163,8 @@ const rendered = computed(() => renderMarkdown(props.content))
 </script>
 
 <style>
+@reference "../../assets/css/main.css";
+
 .ai-markdown .ai-h1 { @apply text-xl font-bold mt-4 mb-2 text-gray-900 dark:text-white; }
 .ai-markdown .ai-h2 { @apply text-lg font-semibold mt-3 mb-2 text-gray-900 dark:text-white; }
 .ai-markdown .ai-h3 { @apply text-base font-semibold mt-2 mb-1 text-gray-900 dark:text-white; }
