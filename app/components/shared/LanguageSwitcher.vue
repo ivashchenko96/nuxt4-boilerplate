@@ -1,7 +1,7 @@
 <template>
   <select
     :value="locale"
-    class="text-sm border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300"
+    class="text-sm border border-soft rounded-md px-2 py-1 bg-paper text-ink"
     :aria-label="$t('common.language')"
     @change="onLocaleChange"
   >

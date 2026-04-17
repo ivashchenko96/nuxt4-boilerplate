@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
@@ -25,7 +24,7 @@ export default defineNuxtConfig({
       },
       meta: [
         { name: 'format-detection', content: 'telephone=no' },
-        { name: 'theme-color', content: '#0f172a' },
+        { name: 'theme-color', content: '#b86f56' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -52,6 +51,7 @@ export default defineNuxtConfig({
       appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:3000',
       defaultLocale: 'en',
       enableSeo: process.env.NUXT_PUBLIC_ENABLE_SEO !== 'false',
+      authProvider: process.env.NUXT_PUBLIC_AUTH_PROVIDER || 'mock',
       // AI configuration — injected at runtime, never baked into the image
       aiBaseUrl: process.env.NUXT_PUBLIC_AI_BASE_URL || '',
       aiDefaultModel: process.env.NUXT_PUBLIC_AI_DEFAULT_MODEL || 'gpt-4o',
@@ -86,12 +86,6 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
-  },
-
-  fonts: {
-    families: [
-      { name: 'Inter', provider: 'google' },
-    ],
   },
 
   i18n: {

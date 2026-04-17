@@ -1,25 +1,25 @@
 <template>
   <div>
     <!-- Hero -->
-    <section class="bg-gradient-to-br from-brand-950 via-gray-900 to-gray-950 py-24">
+    <section class="py-24 bg-paper">
       <div class="max-w-4xl mx-auto px-4 text-center">
-        <h1 class="text-4xl font-extrabold text-white mb-4">
+        <h1 class="text-4xl md:text-5xl font-editorial text-ink mb-4">
           {{ $t('about.title') }}
         </h1>
-        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        <p class="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
           {{ $t('about.description') }}
         </p>
       </div>
     </section>
 
     <!-- Content -->
-    <section class="py-16 bg-white dark:bg-gray-950">
+    <section class="py-16 bg-paper">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose dark:prose-invert max-w-none">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+        <div class="max-w-none">
+          <h2 class="text-2xl md:text-3xl font-editorial text-ink mb-4">
             {{ $t('about.missionTitle') }}
           </h2>
-          <p class="text-gray-600 dark:text-gray-400 mb-8">
+          <p class="text-muted mb-8 leading-relaxed">
             {{ $t('about.missionText') }}
           </p>
 
@@ -27,16 +27,16 @@
             <div
               v-for="value in values"
               :key="value.title"
-              class="p-6 rounded-xl border border-gray-200 dark:border-gray-800"
+              class="ui-panel p-6"
             >
               <UIcon
                 :name="value.icon"
-                class="w-8 h-8 text-brand-600 dark:text-brand-400 mb-3"
+                class="w-8 h-8 text-brand-600 mb-3"
               />
-              <h3 class="font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 class="font-semibold text-ink mb-2">
                 {{ value.title }}
               </h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400">
+              <p class="text-sm text-muted leading-relaxed">
                 {{ value.description }}
               </p>
             </div>

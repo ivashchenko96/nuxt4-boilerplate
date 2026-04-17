@@ -1,5 +1,5 @@
 <template>
-  <header class="h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center px-4 gap-4">
+  <header class="h-16 bg-paper border-b border-soft flex items-center px-6 gap-4">
     <UButton
       variant="ghost"
       size="sm"
@@ -18,7 +18,7 @@
     />
 
     <div class="flex-1">
-      <h1 class="text-lg font-semibold text-gray-900 dark:text-white">
+      <h1 class="text-lg md:text-xl font-semibold text-ink font-editorial">
         {{ pageTitle }}
       </h1>
     </div>
@@ -31,7 +31,7 @@
         variant="ghost"
         size="sm"
         icon="i-heroicons-sparkles"
-        :class="aiStore.panelOpen ? 'text-brand-500 bg-brand-50 dark:bg-brand-900/20' : ''"
+        :class="aiStore.panelOpen ? 'text-brand-600 bg-brand-100' : ''"
         :aria-label="$t('ai.togglePanel')"
         @click="aiStore.panelOpen = !aiStore.panelOpen"
       />
@@ -52,7 +52,7 @@
       <UAvatar
         :alt="user?.name"
         size="sm"
-        class="cursor-pointer bg-brand-600"
+        class="cursor-pointer bg-brand-500 text-white"
       />
     </div>
   </header>

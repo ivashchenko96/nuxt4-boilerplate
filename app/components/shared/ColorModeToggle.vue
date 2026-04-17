@@ -2,6 +2,7 @@
   <UButton
     variant="ghost"
     size="sm"
+    class="text-muted hover:text-ink hover:bg-surface"
     :icon="colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'"
     :aria-label="colorMode.value === 'dark' ? $t('common.lightMode') : $t('common.darkMode')"
     @click="toggleColorMode"

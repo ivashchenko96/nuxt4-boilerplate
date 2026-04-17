@@ -1,22 +1,22 @@
 <template>
   <div>
     <!-- Hero -->
-    <section class="bg-gradient-to-br from-brand-950 via-gray-900 to-gray-950 py-24">
+    <section class="py-24 bg-paper">
       <div class="max-w-4xl mx-auto px-4 text-center">
-        <h1 class="text-4xl font-extrabold text-white mb-4">
+        <h1 class="text-4xl md:text-5xl font-editorial text-ink mb-4">
           {{ $t('contact.title') }}
         </h1>
-        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        <p class="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
           {{ $t('contact.description') }}
         </p>
       </div>
     </section>
 
     <!-- Contact form -->
-    <section class="py-16 bg-white dark:bg-gray-950">
+    <section class="py-16 bg-paper">
       <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8">
-          <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6">
+        <div class="ui-panel p-8">
+          <h2 class="text-xl md:text-2xl font-editorial text-ink mb-6">
             {{ $t('contact.formTitle') }}
           </h2>
 

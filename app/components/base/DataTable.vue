@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-    <div class="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center gap-3 flex-wrap">
+  <div class="ui-panel overflow-hidden">
+    <div class="p-4 border-b border-soft flex items-center gap-3 flex-wrap">
       <UInput
         v-model="tableState.search"
         :placeholder="$t('table.search')"
@@ -21,14 +21,14 @@
         role="grid"
         :aria-label="ariaLabel"
       >
-        <thead class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+        <thead class="bg-surface-strong text-muted">
           <tr>
             <th
               v-for="col in columns"
               :key="String(col.key)"
               :class="[
                 'px-4 py-3 font-medium',
-                col.sortable ? 'cursor-pointer select-none hover:text-gray-900 dark:hover:text-white' : '',
+                col.sortable ? 'cursor-pointer select-none hover:text-ink' : '',
                 col.align === 'center' ? 'text-center' : col.align === 'right' ? 'text-right' : 'text-left',
               ]"
               :aria-sort="tableState.sortKey === col.key ? (tableState.sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'"
@@ -41,7 +41,7 @@
                 {{ col.label }}
                 <span
                   v-if="col.sortable"
-                  class="text-gray-400"
+                  class="text-muted"
                 >
                   <UIcon
                     v-if="tableState.sortKey === col.key"
@@ -58,7 +58,7 @@
             </th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+        <tbody class="divide-y divide-[#d9cfc0] dark:divide-[#4a3f33]">
           <template v-if="loading">
             <tr
               v-for="i in tableState.perPage"
@@ -70,7 +70,7 @@
                 :key="String(col.key)"
                 class="px-4 py-3"
               >
-                <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded" />
+                <div class="h-4 bg-[#e6dccd] dark:bg-[#3f352c] rounded" />
               </td>
             </tr>
           </template>
@@ -83,9 +83,9 @@
               <div class="flex flex-col items-center gap-3">
                 <UIcon
                   name="i-heroicons-inbox"
-                  class="w-12 h-12 text-gray-300 dark:text-gray-600"
+                  class="w-12 h-12 text-muted/60"
                 />
-                <p class="text-gray-500 dark:text-gray-400 font-medium">
+                <p class="text-muted font-medium">
                   {{ emptyText || $t('table.noData') }}
                 </p>
               </div>
@@ -96,13 +96,13 @@
             <tr
               v-for="(row, rowIndex) in rows"
               :key="rowIndex"
-              class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+              class="hover:bg-surface-strong/60 transition-colors"
             >
               <td
                 v-for="col in columns"
                 :key="String(col.key)"
                 :class="[
-                  'px-4 py-3 text-gray-700 dark:text-gray-300',
+                  'px-4 py-3 text-ink',
                   col.align === 'center' ? 'text-center' : col.align === 'right' ? 'text-right' : 'text-left',
                 ]"
               >
@@ -122,9 +122,9 @@
 
     <div
       v-if="total > 0"
-      class="p-4 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between flex-wrap gap-3"
+      class="p-4 border-t border-soft flex items-center justify-between flex-wrap gap-3"
     >
-      <p class="text-sm text-gray-500 dark:text-gray-400">
+      <p class="text-sm text-muted">
         {{ $t('table.showing', { from: from + 1, to: Math.min(to, total), total }) }}
       </p>
       <div class="flex items-center gap-2">
@@ -136,7 +136,7 @@
           :aria-label="$t('table.prevPage')"
           @click="onPageChange(tableState.page - 1)"
         />
-        <span class="text-sm text-gray-700 dark:text-gray-300 px-2">
+        <span class="text-sm text-ink px-2">
           {{ tableState.page }} / {{ totalPages }}
         </span>
         <UButton

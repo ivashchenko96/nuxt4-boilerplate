@@ -118,6 +118,7 @@ Copy `.env.example` to `.env` for local development. **Never commit `.env`**.
 | `NUXT_PUBLIC_APP_URL`         | Public  | Canonical public URL                       |
 | `NUXT_PUBLIC_API_BASE_URL`    | Public  | REST API base URL (client-side)            |
 | `NUXT_PUBLIC_AUTH_BASE_URL`   | Public  | Auth service base URL                      |
+| `NUXT_PUBLIC_AUTH_PROVIDER`   | Public  | Auth mode: `mock` (demo) or `api` (real)   |
 | `NUXT_PUBLIC_ENABLE_SEO`      | Public  | Enable SEO meta (default: true)            |
 | `NUXT_PUBLIC_DEFAULT_TENANT`  | Public  | Default tenant slug                        |
 | `JWT_SECRET`                  | Private | Server-only JWT secret (never to client)   |

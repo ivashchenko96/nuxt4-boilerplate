@@ -1,29 +1,29 @@
 <template>
   <div class="space-y-6 max-w-2xl">
     <div>
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+      <h1 class="text-3xl font-editorial text-ink">
         {{ $t('settings.title') }}
       </h1>
-      <p class="text-gray-500 text-sm mt-1">
+      <p class="text-muted text-sm mt-2">
         {{ $t('settings.subtitle') }}
       </p>
     </div>
 
-    <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6 space-y-4">
-      <h2 class="text-base font-semibold text-gray-900 dark:text-white">
+    <div class="ui-panel p-6 space-y-4">
+      <h2 class="text-xl font-editorial text-ink">
         {{ $t('settings.profile') }}
       </h2>
       <div class="flex items-center gap-4">
         <UAvatar
           :alt="user?.name"
           size="xl"
-          class="bg-brand-600"
+          class="bg-brand-500 text-white"
         />
         <div>
-          <p class="font-medium text-gray-900 dark:text-white">
+          <p class="font-medium text-ink">
             {{ user?.name }}
           </p>
-          <p class="text-sm text-gray-500">
+          <p class="text-sm text-muted">
             {{ user?.email }}
           </p>
         </div>
@@ -64,17 +64,17 @@
       </UForm>
     </div>
 
-    <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6 space-y-4">
-      <h2 class="text-base font-semibold text-gray-900 dark:text-white">
+    <div class="ui-panel p-6 space-y-4">
+      <h2 class="text-xl font-editorial text-ink">
         {{ $t('settings.preferences') }}
       </h2>
       <div class="space-y-3">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">
+            <p class="text-sm font-medium text-ink">
               {{ $t('settings.darkMode') }}
             </p>
-            <p class="text-xs text-gray-500">
+            <p class="text-xs text-muted">
               {{ $t('settings.darkModeDesc') }}
             </p>
           </div>
@@ -85,13 +85,13 @@
             @change="toggleDarkMode"
           >
         </div>
-        <hr class="border-gray-200 dark:border-gray-700">
+        <hr class="border-soft">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">
+            <p class="text-sm font-medium text-ink">
               {{ $t('settings.language') }}
             </p>
-            <p class="text-xs text-gray-500">
+            <p class="text-xs text-muted">
               {{ $t('settings.languageDesc') }}
             </p>
           </div>
@@ -100,15 +100,15 @@
       </div>
     </div>
 
-    <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6 space-y-5">
+    <div class="ui-panel p-6 space-y-5">
       <div class="flex items-center gap-2">
         <UIcon
           name="i-heroicons-sparkles"
-          class="w-5 h-5 text-brand-500"
+          class="w-5 h-5 text-brand-600"
         />
         <h2
           id="ai"
-          class="text-base font-semibold text-gray-900 dark:text-white"
+          class="text-xl font-editorial text-ink"
         >
           {{ $t('settings.ai') }}
         </h2>
@@ -118,10 +118,10 @@
         <!-- Enable AI -->
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">
+            <p class="text-sm font-medium text-ink">
               {{ $t('settings.aiEnabled') }}
             </p>
-            <p class="text-xs text-gray-500">
+            <p class="text-xs text-muted">
               {{ $t('settings.aiEnabledDesc') }}
             </p>
           </div>
@@ -133,7 +133,7 @@
           >
         </div>
 
-        <hr class="border-gray-200 dark:border-gray-700">
+        <hr class="border-soft">
 
         <!-- Provider base URL -->
         <UFormField
@@ -166,10 +166,10 @@
         <!-- Streaming toggle -->
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">
+            <p class="text-sm font-medium text-ink">
               {{ $t('settings.aiStreaming') }}
             </p>
-            <p class="text-xs text-gray-500">
+            <p class="text-xs text-muted">
               {{ $t('settings.aiStreamingDesc') }}
             </p>
           </div>
@@ -190,7 +190,7 @@
           <textarea
             :value="aiStore.settings.systemPromptOverride ?? ''"
             rows="4"
-            class="w-full resize-y rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent placeholder-gray-400 dark:placeholder-gray-600"
+            class="w-full resize-y rounded-lg border border-soft bg-paper text-sm text-ink px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent placeholder:text-muted"
             :placeholder="$t('settings.aiSystemPromptPlaceholder')"
             @input="aiStore.updateSettings({ systemPromptOverride: ($event.target as HTMLTextAreaElement).value || undefined })"
           />
@@ -208,16 +208,16 @@
       </div>
     </div>
 
-    <div class="bg-white dark:bg-gray-900 rounded-xl border border-red-200 dark:border-red-900 p-6 space-y-4">
-      <h2 class="text-base font-semibold text-red-600 dark:text-red-400">
+    <div class="ui-panel p-6 space-y-4 border-red-200 dark:border-red-900">
+      <h2 class="text-xl font-editorial text-red-600 dark:text-red-400">
         {{ $t('settings.dangerZone') }}
       </h2>
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-sm font-medium text-gray-900 dark:text-white">
+          <p class="text-sm font-medium text-ink">
             {{ $t('settings.signOut') }}
           </p>
-          <p class="text-xs text-gray-500">
+          <p class="text-xs text-muted">
             {{ $t('settings.signOutDesc') }}
           </p>
         </div>

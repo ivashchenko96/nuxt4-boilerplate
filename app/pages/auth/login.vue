@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="text-center mb-8">
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-editorial text-ink">
         {{ $t('auth.loginTitle') }}
       </h1>
-      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">
+      <p class="text-muted text-sm mt-3">
         {{ $t('auth.loginSubtitle') }}
       </p>
     </div>
@@ -12,7 +12,7 @@
     <UForm
       :state="form"
       :schema="schema"
-      class="space-y-4"
+      class="space-y-5"
       @submit="onSubmit"
     >
       <UFormField
@@ -61,7 +61,7 @@
         />
         <NuxtLink
           :to="localePath('/auth/forgot-password')"
-          class="text-sm text-brand-600 hover:text-brand-500 dark:text-brand-400"
+          class="text-sm text-brand-700 hover:text-brand-600"
         >
           {{ $t('auth.forgotPassword') }}
         </NuxtLink>
@@ -80,11 +80,15 @@
         color="primary"
         size="lg"
         block
+        class="mt-2"
         :loading="isLoading"
       >
         {{ $t('auth.loginButton') }}
       </UButton>
     </UForm>
+    <p class="text-xs text-muted mt-5 text-center">
+      Demo mode: any email and password are accepted.
+    </p>
   </div>
 </template>
 
@@ -108,8 +112,8 @@ const form = reactive({
 })
 
 const schema = z.object({
-  email: z.string().email(t('auth.validation.emailInvalid')),
-  password: z.string().min(8, t('auth.validation.passwordMin')),
+  email: z.string().min(1, t('auth.validation.emailInvalid')),
+  password: z.string().min(1, t('auth.validation.passwordMin')),
 })
 
 async function onSubmit() {
